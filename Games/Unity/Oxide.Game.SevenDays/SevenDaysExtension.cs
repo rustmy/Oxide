@@ -114,9 +114,6 @@ namespace Oxide.Game.SevenDays
         {
             // Register our loader
             Manager.RegisterPluginLoader(new SevenDaysPluginLoader());
-
-            // Register our libraries
-            Manager.RegisterLibrary("SDTD", new Libraries.SevenDays());
         }
 
         /// <summary>

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Reflection;
 
-using UnityEngine;
-
 using Oxide.Core;
 using Oxide.Core.Plugins;
 using Oxide.Game.Rust.Libraries;
@@ -12,18 +10,18 @@ namespace Oxide.Plugins
     public abstract class RustPlugin : CSharpPlugin
     {
         protected Command cmd;
-        protected Game.Rust.Libraries.Rust rust;
 
         public override void SetPluginInfo(string name, string path)
         {
             base.SetPluginInfo(name, path);
 
             cmd = Interface.Oxide.GetLibrary<Command>();
-            rust = Interface.Oxide.GetLibrary<Game.Rust.Libraries.Rust>();
         }
 
         public override void HandleAddedToManager(PluginManager manager)
         {
+            #region Online Players Attribute
+
             foreach (var field in GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance))
             {
                 var attributes = field.GetCustomAttributes(typeof(OnlinePlayersAttribute), true);
@@ -59,6 +57,12 @@ namespace Oxide.Plugins
                 }
             }
 
+            if (onlinePlayerFields.Count > 0) foreach (var player in BasePlayer.activePlayerList) AddOnlinePlayer(player);
+
+            #endregion
+
+            #region Command Attributes
+
             foreach (var method in GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance))
             {
                 var attributes = method.GetCustomAttributes(typeof(ConsoleCommandAttribute), true);
@@ -77,10 +81,12 @@ namespace Oxide.Plugins
                 }
             }
 
-            if (onlinePlayerFields.Count > 0) foreach (var player in BasePlayer.activePlayerList) AddOnlinePlayer(player);
+            #endregion
 
             base.HandleAddedToManager(manager);
         }
+
+        #region Online Players Attribute
 
         [HookMethod("OnPlayerInit")]
         private void base_OnPlayerInit(BasePlayer player) => AddOnlinePlayer(player);
@@ -106,124 +112,6 @@ namespace Oxide.Plugins
             }
         }
 
-        /// <summary>
-        /// Print a message to a players console log
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void PrintToConsole(BasePlayer player, string format, params object[] args)
-        {
-            if (player?.net != null) player.SendConsoleCommand("echo " + (args.Length > 0 ? string.Format(format, args) : format));
-        }
-
-        /// <summary>
-        /// Print a message to every players console log
-        /// </summary>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void PrintToConsole(string format, params object[] args)
-        {
-            if (BasePlayer.activePlayerList.Count < 1) return;
-            ConsoleNetwork.BroadcastToAllClients("echo " + (args.Length > 0 ? string.Format(format, args) : format));
-        }
-
-        /// <summary>
-        /// Print a message to a players chat log
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void PrintToChat(BasePlayer player, string format, params object[] args)
-        {
-            if (player?.net != null) player.SendConsoleCommand("chat.add", 0, args.Length > 0 ? string.Format(format, args) : format, 1f);
-        }
-
-        /// <summary>
-        /// Print a message to every players chat log
-        /// </summary>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void PrintToChat(string format, params object[] args)
-        {
-            if (BasePlayer.activePlayerList.Count < 1) return;
-            ConsoleNetwork.BroadcastToAllClients("chat.add", 0, args.Length > 0 ? string.Format(format, args) : format, 1f);
-        }
-
-        /// <summary>
-        /// Send a reply message in response to a console command
-        /// </summary>
-        /// <param name="arg"></param>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void SendReply(ConsoleSystem.Arg arg, string format, params object[] args)
-        {
-            var message = args.Length > 0 ? string.Format(format, args) : format;
-            var player = arg.connection?.player as BasePlayer;
-            if (player?.net != null)
-            {
-                player.SendConsoleCommand("echo " + message);
-                return;
-            }
-            Puts(message);
-        }
-
-        /// <summary>
-        /// Send a reply message in response to a chat command
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void SendReply(BasePlayer player, string format, params object[] args) => PrintToChat(player, format, args);
-
-        /// <summary>
-        /// Send a warning message in response to a console command
-        /// </summary>
-        /// <param name="arg"></param>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void SendWarning(ConsoleSystem.Arg arg, string format, params object[] args)
-        {
-            var message = args.Length > 0 ? string.Format(format, args) : format;
-            var player = arg.connection?.player as BasePlayer;
-            if (player?.net != null)
-            {
-                player.SendConsoleCommand("echo " + message);
-                return;
-            }
-            Debug.LogWarning(message);
-        }
-
-        /// <summary>
-        /// Send an error message in response to a console command
-        /// </summary>
-        /// <param name="arg"></param>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void SendError(ConsoleSystem.Arg arg, string format, params object[] args)
-        {
-            var message = args.Length > 0 ? string.Format(format, args) : format;
-            var player = arg.connection?.player as BasePlayer;
-            if (player?.net != null)
-            {
-                player.SendConsoleCommand("echo " + message);
-                return;
-            }
-            Debug.LogError(message);
-        }
-
-        /// <summary>
-        /// Forces a player to a specific position
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="destination"></param>
-        protected void ForcePlayerPosition(BasePlayer player, Vector3 destination)
-        {
-            player.MovePosition(destination);
-            if (!player.IsSpectating() || Vector3.Distance(player.transform.position, destination) > 25.0)
-                player.ClientRPCPlayer(null, player, "ForcePositionTo", destination);
-            else
-                player.SendNetworkUpdate(BasePlayer.NetworkQueue.UpdateDistance);
-        }
+        #endregion
     }
 }

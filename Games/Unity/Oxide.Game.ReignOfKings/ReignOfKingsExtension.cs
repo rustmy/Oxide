@@ -144,7 +144,6 @@ namespace Oxide.Game.ReignOfKings
 
             // Register our libraries
             Manager.RegisterLibrary("Command", new Command());
-            Manager.RegisterLibrary("RoK", new Libraries.ReignOfKings());
         }
 
         /// <summary>

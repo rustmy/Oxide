@@ -82,7 +82,6 @@ namespace Oxide.Game.Rust
 
             // Register our libraries
             Manager.RegisterLibrary("Command", new Command());
-            Manager.RegisterLibrary("Rust", new Libraries.Rust());
         }
 
         /// <summary>

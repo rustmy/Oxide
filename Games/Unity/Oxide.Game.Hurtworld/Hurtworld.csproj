@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Libraries\Command.cs" />
-    <Compile Include="Libraries\Hurtworld.cs" />
     <Compile Include="Libraries\Covalence\HurtworldCommandSystem.cs" />
     <Compile Include="Libraries\Covalence\HurtworldCovalenceProvider.cs" />
     <Compile Include="Libraries\Covalence\HurtworldConsolePlayer.cs" />

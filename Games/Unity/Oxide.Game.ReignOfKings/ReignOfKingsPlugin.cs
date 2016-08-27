@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 
-using CodeHatch.Common;
 using CodeHatch.Engine.Networking;
 using CodeHatch.Networking.Events.Players;
 
@@ -14,18 +13,18 @@ namespace Oxide.Plugins
     public abstract class ReignOfKingsPlugin : CSharpPlugin
     {
         protected Command cmd;
-        protected ReignOfKings rok;
 
         public override void SetPluginInfo(string name, string path)
         {
             base.SetPluginInfo(name, path);
 
             cmd = Interface.Oxide.GetLibrary<Command>();
-            rok = Interface.Oxide.GetLibrary<ReignOfKings>("RoK");
         }
 
         public override void HandleAddedToManager(PluginManager manager)
         {
+            #region Online Players Attribute
+
             foreach (var field in GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance))
             {
                 var attributes = field.GetCustomAttributes(typeof(OnlinePlayersAttribute), true);
@@ -52,9 +51,18 @@ namespace Oxide.Plugins
                         Puts($"The {pluginField.GenericArguments[1].Name} class does not have a public Player field! (online players will not be tracked)");
                         continue;
                     }
+                    if (!pluginField.HasValidConstructor(typeof(Player)))
+                    {
+                        Puts($"The {field.Name} field is using a class which contains no valid constructor (online players will not be tracked)");
+                        continue;
+                    }
                     onlinePlayerFields.Add(pluginField);
                 }
             }
+
+            #endregion
+
+            #region Command Attributes
 
             foreach (var method in GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance))
             {
@@ -64,8 +72,13 @@ namespace Oxide.Plugins
                 cmd.AddChatCommand(attribute?.Command, this, method.Name);
             }
 
+            #endregion
+
             base.HandleAddedToManager(manager);
         }
+
+        #region Online Players Attribute
+
         [HookMethod("OnPlayerSpawn")]
         private void base_OnPlayerSpawn(PlayerFirstSpawnEvent e) => AddOnlinePlayer(e.Player);
 
@@ -90,30 +103,6 @@ namespace Oxide.Plugins
             }
         }
 
-        /// <summary>
-        /// Print a message to a players chat log
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void PrintToChat(Player player, string format, params object[] args) => player.SendMessage(format, args);
-
-        /// <summary>
-        /// Print a message to every players chat log
-        /// </summary>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void PrintToChat(string format, params object[] args)
-        {
-            if (Server.PlayerCount >= 1) Server.BroadcastMessage(format, args);
-        }
-
-        /// <summary>
-        /// Send a reply message in response to a chat command
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="format"></param>
-        /// <param name="args"></param>
-        protected void SendReply(Player player, string format, params object[] args) => PrintToChat(player, format, args);
+        #endregion
     }
 }

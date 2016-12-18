@@ -125,7 +125,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 23,
+            "InjectionIndex": 33,
             "ReturnBehavior": 0,
             "ArgumentBehavior": 4,
             "ArgumentString": "a0",
@@ -305,7 +305,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 105,
+            "InjectionIndex": 106,
             "ReturnBehavior": 0,
             "ArgumentBehavior": 1,
             "ArgumentString": null,
@@ -623,7 +623,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 0,
+            "InjectionIndex": 4,
             "ReturnBehavior": 0,
             "ArgumentBehavior": 3,
             "ArgumentString": null,
@@ -723,7 +723,7 @@
                 "Construction"
               ]
             },
-            "MSILHash": "vaMsptPSb1yMqD6d/6pwe7Dys5K/uVH8rQCdh/5rmGU=",
+            "MSILHash": "EzkTEzhVo5xrIeJorkqY8usouBnQe5Pbb4Z6rp9ZFqo=",
             "BaseHookName": null,
             "HookCategory": "Entity"
           }
@@ -757,7 +757,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 20,
+            "InjectionIndex": 96,
             "ReturnBehavior": 1,
             "ArgumentBehavior": 4,
             "ArgumentString": "this, a0",
@@ -807,7 +807,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 105,
+            "InjectionIndex": 127,
             "ReturnBehavior": 0,
             "ArgumentBehavior": 4,
             "ArgumentString": "this, a0, l7",
@@ -863,7 +863,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 695,
+            "InjectionIndex": 706,
             "ReturnBehavior": 1,
             "ArgumentBehavior": 4,
             "ArgumentString": "this, l2",
@@ -881,7 +881,7 @@
                 "BaseEntity/RPCMessage"
               ]
             },
-            "MSILHash": "O5YoTKcWza1isbRJFX5bTD48fRhS7VkRCprf0Crl3xg=",
+            "MSILHash": "DwyohEJ1OcR6UE0LPuuYUXY5Mu4PbuLxqlkB0Y4ggO4=",
             "BaseHookName": null,
             "HookCategory": "Player"
           }
@@ -960,7 +960,7 @@
                 "Network.Connection"
               ]
             },
-            "MSILHash": "l7DgRTS6JbeH2XczWWNL4UjAAjEsscCBDM05jAiGm18=",
+            "MSILHash": "+fLf7C8nLZF7vS3zWybs2YufnWgLjF2JoBGR0DGWcDU=",
             "BaseHookName": null,
             "HookCategory": "Player"
           }
@@ -1458,7 +1458,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 0,
+            "InjectionIndex": 4,
             "ReturnBehavior": 1,
             "ArgumentBehavior": 3,
             "ArgumentString": null,
@@ -1920,10 +1920,10 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 32,
+            "InjectionIndex": 46,
             "ReturnBehavior": 0,
             "ArgumentBehavior": 4,
-            "ArgumentString": "this, l1, a0.player",
+            "ArgumentString": "this, l2, a0.player",
             "HookTypeName": "Simple",
             "Name": "OnCropGather",
             "HookName": "OnCropGather",
@@ -1991,32 +1991,6 @@
               ]
             },
             "MSILHash": "WJ5sRCziAPnQ7n4UOb8pP6jxCRVPkT1ft0FqzefL8wI=",
-            "BaseHookName": null,
-            "HookCategory": "Trap"
-          }
-        },
-        {
-          "Type": "Simple",
-          "Hook": {
-            "InjectionIndex": 0,
-            "ReturnBehavior": 0,
-            "ArgumentBehavior": 3,
-            "ArgumentString": null,
-            "HookTypeName": "Simple",
-            "Name": "OnTrapTrigger",
-            "HookName": "OnTrapTrigger",
-            "AssemblyName": "Assembly-CSharp.dll",
-            "TypeName": "BaseTrap",
-            "Flagged": false,
-            "Signature": {
-              "Exposure": 2,
-              "Name": "ObjectEntered",
-              "ReturnType": "System.Void",
-              "Parameters": [
-                "UnityEngine.GameObject"
-              ]
-            },
-            "MSILHash": "+u2GCtSHTDWu7iqcjcFKh98FNKhbrQfPRx+LI73xrGk=",
             "BaseHookName": null,
             "HookCategory": "Trap"
           }
@@ -2102,7 +2076,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 25,
+            "InjectionIndex": 32,
             "ReturnBehavior": 0,
             "ArgumentBehavior": 4,
             "ArgumentString": "l0",
@@ -2383,7 +2357,7 @@
                 "ProtoBuf.CreateBuilding"
               ]
             },
-            "MSILHash": "usPoEAPCd6UCt6abwL62L4TbEzgxf2erB7SwAPW/Q/Y=",
+            "MSILHash": "/31ZkalqbTD75hqmg3Ol3SZvqDbY2tZrakqsZkMYXp4=",
             "BaseHookName": null,
             "HookCategory": "Structure"
           }
@@ -2540,7 +2514,7 @@
               "ReturnType": "System.Void",
               "Parameters": []
             },
-            "MSILHash": "6/tqk84wl47Q/qS3JTVOgB7bAEnZDmYvH5gQXSSvvcg=",
+            "MSILHash": "yZqcXVB6Ixo9Etpeei4ezkUELZYnQIYaUv+0A1ISUGs=",
             "BaseHookName": null,
             "HookCategory": "_Patches"
           }
@@ -2678,7 +2652,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 21,
+            "InjectionIndex": 24,
             "ReturnBehavior": 1,
             "ArgumentBehavior": 4,
             "ArgumentString": "a0, l1",
@@ -2871,7 +2845,7 @@
             "InjectionIndex": 16,
             "ReturnBehavior": 1,
             "ArgumentBehavior": 4,
-            "ArgumentString": "l0.RemoteEndPoint",
+            "ArgumentString": "l1",
             "HookTypeName": "Simple",
             "Name": "OnRconConnection",
             "HookName": "OnRconConnection",
@@ -2892,7 +2866,7 @@
         {
           "Type": "Modify",
           "Hook": {
-            "InjectionIndex": 29,
+            "InjectionIndex": 28,
             "RemoveCount": 0,
             "Instructions": [
               {
@@ -2944,7 +2918,7 @@
                 "Network.Message"
               ]
             },
-            "MSILHash": "Ymmqv9fi339MBJ/8Dv6xRzazou0BX2qIr4sxT8oKxC0=",
+            "MSILHash": "K4czkTHPUXr9dI+xIpaVGe5RzT6sgmOctsoD7Zy/KV4=",
             "BaseHookName": null,
             "HookCategory": "Player"
           }
@@ -3379,7 +3353,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 0,
+            "InjectionIndex": 9,
             "ReturnBehavior": 1,
             "ArgumentBehavior": 4,
             "ArgumentString": "this, a0.player",
@@ -3408,7 +3382,7 @@
             "InjectionIndex": 234,
             "ReturnBehavior": 0,
             "ArgumentBehavior": 4,
-            "ArgumentString": "l2, l2.authStatus",
+            "ArgumentString": "l5, l5.authStatus",
             "HookTypeName": "Simple",
             "Name": "OnPlayerBanned [eac]",
             "HookName": "OnPlayerBanned",
@@ -3510,6 +3484,58 @@
             "MSILHash": "Qye6JKwWS6rcq4NTj5dBmfekFDUm7LrB9X2zkJA/Sdk=",
             "BaseHookName": "OnPlayerBanned [vac]",
             "HookCategory": "Player"
+          }
+        },
+        {
+          "Type": "Simple",
+          "Hook": {
+            "InjectionIndex": 4,
+            "ReturnBehavior": 1,
+            "ArgumentBehavior": 3,
+            "ArgumentString": null,
+            "HookTypeName": "Simple",
+            "Name": "OnTrapTrigger [beartrap]",
+            "HookName": "OnTrapTrigger",
+            "AssemblyName": "Assembly-CSharp.dll",
+            "TypeName": "BearTrap",
+            "Flagged": false,
+            "Signature": {
+              "Exposure": 2,
+              "Name": "ObjectEntered",
+              "ReturnType": "System.Void",
+              "Parameters": [
+                "UnityEngine.GameObject"
+              ]
+            },
+            "MSILHash": "d7byajLmaBSp/+6V9g4JOF1VYA7Cig77zfht55n61pI=",
+            "BaseHookName": null,
+            "HookCategory": "Trap"
+          }
+        },
+        {
+          "Type": "Simple",
+          "Hook": {
+            "InjectionIndex": 14,
+            "ReturnBehavior": 1,
+            "ArgumentBehavior": 3,
+            "ArgumentString": null,
+            "HookTypeName": "Simple",
+            "Name": "OnTrapTrigger [landmine]",
+            "HookName": "OnTrapTrigger",
+            "AssemblyName": "Assembly-CSharp.dll",
+            "TypeName": "Landmine",
+            "Flagged": false,
+            "Signature": {
+              "Exposure": 2,
+              "Name": "ObjectEntered",
+              "ReturnType": "System.Void",
+              "Parameters": [
+                "UnityEngine.GameObject"
+              ]
+            },
+            "MSILHash": "7IkqYHOPFk2UtQfRj+bwGCUn73sRrbyNnxckC/73+40=",
+            "BaseHookName": null,
+            "HookCategory": "Trap"
           }
         }
       ]
